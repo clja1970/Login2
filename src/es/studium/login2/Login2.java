@@ -88,12 +88,12 @@ public class Login2 extends Frame implements WindowListener, ActionListener,Text
 	@Override
 	public void actionPerformed(ActionEvent event)
 	{ 		
-		
+
 		if (event.getSource().equals(btnlimpiar))
-	{
-		txtUsuario.setText("");
-		txtcontrasenia.setText("");
-	}
+		{
+			txtUsuario.setText("");
+			txtcontrasenia.setText("");
+		}
 		else if(event.getSource().equals(btnaceptar))
 		{
 			intro=txtUsuario.getText();
@@ -106,13 +106,13 @@ public class Login2 extends Frame implements WindowListener, ActionListener,Text
 			{
 				dlgUno.setVisible(true);
 			}
-			 }
-			 				
-			}
-			/*System.out.println(intro);
+		}
+
+	}
+	/*System.out.println(intro);
 	System.out.println(Otrointro);
 	dlgDos.setVisible(true);
-	*/
+	 */
 
 	@Override
 	public void windowActivated(WindowEvent arg0)
@@ -133,7 +133,6 @@ public class Login2 extends Frame implements WindowListener, ActionListener,Text
 
 	{
 		System.exit(0);
-
 	}
 
 	@Override
@@ -168,7 +167,7 @@ public class Login2 extends Frame implements WindowListener, ActionListener,Text
 	@Override
 	public void textValueChanged(TextEvent arg0)
 	{
-		
+
 	}
 
 }
