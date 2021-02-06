@@ -16,6 +16,11 @@ import java.awt.event.WindowListener;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+/**
+ * @author clja1
+ * @apiNote Hay que poner asteriscos en el login y además cerrar las ventanas una a una y una serie de veces. Para asteriscos usar Hay que poner asteriscos usar
+ * setEchoChar()
+ */
 
 public class Login2 extends Frame implements WindowListener, ActionListener,TextListener
 {
@@ -37,6 +42,8 @@ public class Login2 extends Frame implements WindowListener, ActionListener,Text
 	String cont="Lolo&";
 	String intro="";
 	String contra="";
+	int numeroveces=0;
+
 	public Login2()
 	{
 		add(usuario);
@@ -51,6 +58,7 @@ public class Login2 extends Frame implements WindowListener, ActionListener,Text
 		btnlimpiar.addActionListener(this);
 		txtUsuario.addActionListener(this);
 		txtcontrasenia.addActionListener(this);
+		txtcontrasenia.setEchoChar('*');
 		//btnBoton.addActionListener(this);
 		addWindowListener(this);
 		setLayout(new FlowLayout());
@@ -83,6 +91,7 @@ public class Login2 extends Frame implements WindowListener, ActionListener,Text
 	{
 		new Login2();
 
+
 	}
 
 	@Override
@@ -96,6 +105,7 @@ public class Login2 extends Frame implements WindowListener, ActionListener,Text
 		}
 		else if(event.getSource().equals(btnaceptar))
 		{
+
 			intro=txtUsuario.getText();
 			contra=txtcontrasenia.getText();
 			if ((intro.equals(usu))&(contra.equals(cont)))
@@ -103,8 +113,23 @@ public class Login2 extends Frame implements WindowListener, ActionListener,Text
 				dlgDos.setVisible(true);
 			}
 			else
-			{
+			{	
+				numeroveces=numeroveces+1;
 				dlgUno.setVisible(true);
+				txtUsuario.setText("Tienes "+(3-numeroveces)+" Intentos más");
+				if(numeroveces==2)
+				{
+					txtUsuario.setText("Queda un intento");
+				}
+				else 
+				{
+					if (numeroveces==3)
+					{
+						btnaceptar.setEnabled(false);
+						txtUsuario.setText("Ya la has liao, tás bloqueao");
+						//System.exit(0);
+					}
+				}
 			}
 		}
 
@@ -128,12 +153,30 @@ public class Login2 extends Frame implements WindowListener, ActionListener,Text
 
 	}
 
+	@SuppressWarnings("unlikely-arg-type")
 	@Override
-	public void windowClosing(WindowEvent arg0)
+	public void windowClosing(WindowEvent even)
 
+	{if (even.getWindow().equals(getWindows()))
 	{
+		dlgUno.setVisible(true);
+	}
+	else if (even.getWindow().equals(dlgUno)) 
+	{
+
+		dlgUno.setVisible(false);//no exit on dialog close
+	}
+	else if(even.getWindow().equals(dlgDos))
+	{
+		dlgDos.setVisible(false);
+	}
+	else
+	{
+
 		System.exit(0);
 	}
+	}
+
 
 	@Override
 	public void windowDeactivated(WindowEvent arg0)
