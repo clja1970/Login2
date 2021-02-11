@@ -110,7 +110,7 @@ public class Login2 extends Frame implements WindowListener, ActionListener,Text
 			contra=txtcontrasenia.getText();
 			if ((intro.equals(usu))&(contra.equals(cont)))
 			{
-				dlgDos.setVisible(true);
+				dlgDos.setVisible(true);//Aquí se puede añadir las ventanas de la BBDD
 			}
 			else
 			{	
